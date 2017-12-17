@@ -21,6 +21,12 @@
            map: map,
            title: 'First Marker!'
          });
+         var info_window = new google.maps.InfoWindow({
+           content: 'Hello, I am your first info window!'
+         });
+         marker.addListener('click', function() {
+           info_window.open(map, marker);
+         });
       }
    </script>
    <script async defer
