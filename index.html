@@ -25,6 +25,7 @@
           {title: 'Chinatown Homey Space', location: {lat: 40.7180628, lng: -73.9961237}}
         ];
         var largeInfowindow = new google.maps.InfoWindow();
+        var bounds = new google.maps.LatLngBounds();
 
         for (var i = 0; i < locations.length; i++) {
           var position = locations[i].location;
@@ -38,11 +39,12 @@
           });
 
           markers.push(marker);
-
+          bounds.extend(marker.position);
           marker.addListener('click', function() {
             populateInfoWindow(this, largeInfowindow);
           });
         }
+        map.fitBounds(bounds);
 
         function populateInfoWindow(marker, infowindow) {
           if (infowindow.marker != marker) {
